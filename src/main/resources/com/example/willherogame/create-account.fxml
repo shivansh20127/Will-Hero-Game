@@ -21,14 +21,19 @@
                 <Font name="Chandas" size="64.0" />
             </font>
         </Label>
-        <TextField alignment="CENTER" layoutX="428.0" layoutY="225.0" prefHeight="31.0" prefWidth="194.0" promptText="Username" />
-        <Button layoutX="428.0" layoutY="308.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="194.0" text="Log In" />
-        <Button layoutX="428.0" layoutY="338.0" mnemonicParsing="false" onAction="#showCreateAccountPage" prefHeight="24.0" prefWidth="194.0" text="Create New Account" />
+        <TextField alignment="CENTER" layoutX="428.0" layoutY="225.0" prefHeight="31.0" prefWidth="194.0" promptText="New Username" />
+        <Button layoutX="428.0" layoutY="351.0" mnemonicParsing="false" onAction="#showLoginPage" prefHeight="24.0" prefWidth="194.0" text="Create Account" />
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="450.0" layoutY="440.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../Assets/Images/Hero_MainPage.jpg" />
          </image>
       </ImageView>
-      <PasswordField alignment="CENTER" layoutX="428.0" layoutY="263.0" prefHeight="31.0" prefWidth="194.0" promptText="Password" />
+      <ImageView fitHeight="95.0" fitWidth="80.0" layoutY="543.0" onMouseClicked="#showLoginPage" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../Assets/Images/back_button.png" />
+         </image>
+      </ImageView>
+      <PasswordField alignment="CENTER" layoutX="428.0" layoutY="266.0" prefHeight="31.0" prefWidth="194.0" promptText="New Password" />
+      <PasswordField alignment="CENTER" layoutX="428.0" layoutY="306.0" prefHeight="31.0" prefWidth="194.0" promptText="Confirm Password" />
     </children>
 </AnchorPane>

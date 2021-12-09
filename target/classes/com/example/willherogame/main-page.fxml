@@ -56,7 +56,7 @@
             <Image url="@../../../Assets/Images/hero1.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="91.0" fitWidth="106.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="91.0" fitWidth="106.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#showsettings" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../Assets/Images/settings_icon1.png" />
          </image>

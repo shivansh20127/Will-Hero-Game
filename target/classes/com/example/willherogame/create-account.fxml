@@ -16,7 +16,7 @@
             <Image url="@../../../Assets/Images/login_Background.jpg" />
          </image>
       </ImageView>
-        <Label alignment="CENTER" layoutX="253.0" layoutY="14.0" prefHeight="267.0" prefWidth="544.0" text="WILL HERO" textAlignment="CENTER">
+        <Label alignment="CENTER" layoutX="253.0" layoutY="14.0" prefHeight="173.0" prefWidth="544.0" text="WILL HERO" textAlignment="CENTER">
             <font>
                 <Font name="Chandas" size="64.0" />
             </font>

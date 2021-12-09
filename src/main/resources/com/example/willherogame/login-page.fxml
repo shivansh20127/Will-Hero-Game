@@ -16,13 +16,13 @@
             <Image url="@../../../Assets/Images/login_Background.jpg" />
          </image>
       </ImageView>
-        <Label alignment="CENTER" layoutX="253.0" layoutY="14.0" prefHeight="267.0" prefWidth="544.0" text="WILL HERO" textAlignment="CENTER">
+        <Label alignment="CENTER" layoutX="253.0" layoutY="14.0" prefHeight="176.0" prefWidth="544.0" text="WILL HERO" textAlignment="CENTER">
             <font>
                 <Font name="Chandas" size="64.0" />
             </font>
         </Label>
         <TextField alignment="CENTER" layoutX="428.0" layoutY="225.0" prefHeight="31.0" prefWidth="194.0" promptText="Username" />
-        <Button layoutX="428.0" layoutY="308.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="194.0" text="Log In" />
+        <Button layoutX="428.0" layoutY="308.0" mnemonicParsing="false" onAction="#showMainPage" prefHeight="24.0" prefWidth="194.0" text="Log In" />
         <Button layoutX="428.0" layoutY="338.0" mnemonicParsing="false" onAction="#showCreateAccountPage" prefHeight="24.0" prefWidth="194.0" text="Create New Account" />
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="450.0" layoutY="440.0" pickOnBounds="true" preserveRatio="true">
          <image>

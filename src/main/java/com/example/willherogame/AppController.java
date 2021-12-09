@@ -5,6 +5,7 @@ import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -19,7 +20,6 @@ public class AppController
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(anchorPane);
         stage.setScene(scene);
-        stage.show();
     }
     
     public void showLoginPage(Event event) throws IOException {
@@ -28,7 +28,22 @@ public class AppController
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(anchorPane);
         stage.setScene(scene);
-        stage.show();
+    }
+    
+    public void showMainPage(Event event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("main-page.fxml"));
+        AnchorPane anchorPane = fxmlLoader.load();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(anchorPane);
+        stage.setScene(scene);
+    }
+    
+    public void showSavedGames(Event event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("show-saved-games.fxml"));
+        ScrollPane scrollPane = fxmlLoader.load();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(scrollPane);
+        stage.setScene(scene);
     }
     
 }

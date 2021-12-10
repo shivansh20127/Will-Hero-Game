@@ -67,11 +67,34 @@ public class AppController
     }
 
     @FXML
-    public void backtomain(MouseEvent event) throws IOException
+    public void showingamesettings(MouseEvent event) throws IOException
+    {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ingame_settings.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage stage1 = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage1.setTitle("Settings screen");
+        stage1.setScene(scene);
+        stage1.show();
+    }
+
+    @FXML
+    public void backtomainfrommenu(MouseEvent event) throws IOException
     {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("main-page.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         Stage stage1 = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage1.setTitle("Main game");
+        stage1.setScene(scene);
+        stage1.show();
+    }
+
+    @FXML
+    public void backtomainfromgame(MouseEvent event) throws IOException
+    {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("gameplay_tnt.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage stage1 = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage1.setTitle("Gameplay Screen");
         stage1.setScene(scene);
         stage1.show();
     }

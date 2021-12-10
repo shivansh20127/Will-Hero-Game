@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="630.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.willherogame.AppController">
+   <children>
+      <ImageView fitHeight="630.0" fitWidth="1020.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Images/login_Background.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="91.0" fitWidth="106.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#showingamesettings" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Images/settings_icon1.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="475.0" layoutY="18.0" text="70" textFill="WHITE">
+         <font>
+            <Font name="Silom" size="48.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="65.0" fitWidth="90.0" layoutX="930.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Images/coins.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="259.0" fitWidth="352.0" layoutX="619.0" layoutY="326.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Images/Islands5.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="184.0" fitWidth="194.0" layoutX="300.0" layoutY="317.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Images/Islands11.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="65.0" fitWidth="84.0" layoutX="312.0" layoutY="254.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Images/hero1.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="809.0" layoutY="176.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Images/Tree1.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="823.0" layoutY="16.0" prefHeight="48.0" prefWidth="118.0" text="235" textFill="#f1f51f">
+         <font>
+            <Font name="Silom" size="46.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="667.0" layoutY="176.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Images/Tree2.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="59.0" fitWidth="73.0" layoutX="719.0" layoutY="267.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Images/TNT.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="65.0" fitWidth="75.0" layoutX="894.0" layoutY="261.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Images/Orc2.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="407.0" layoutY="167.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Images/Tree2.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="225.0" fitWidth="328.0" layoutX="-116.0" layoutY="312.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Images/Islands5.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="65.0" fitWidth="75.0" layoutX="101.0" layoutY="198.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Images/Orc2.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

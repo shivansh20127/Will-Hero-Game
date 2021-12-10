@@ -67,6 +67,16 @@ public class AppController
     }
 
     @FXML
+    public void backtomain(MouseEvent event) throws IOException
+    {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("main-page.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage stage1 = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage1.setScene(scene);
+        stage1.show();
+    }
+
+    @FXML
     private ImageView musicicon;
     private boolean music=true;
     @FXML

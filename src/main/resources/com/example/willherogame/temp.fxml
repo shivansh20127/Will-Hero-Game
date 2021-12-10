@@ -9,47 +9,47 @@
 
 <AnchorPane fx:id="scenePane" prefHeight="630.0" prefWidth="1020.0" style="-fx-background-color: #83c4fc#83c4fc #83c4fc#83c4fc;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.willherogame.AppController">
     <children>
-        <ImageView fitHeight="67.0" fitWidth="148.0" layoutX="329.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="67.0" fitWidth="148.0" layoutX="329.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../../../Assets/Images/credits_icon.png" />
             </image>
         </ImageView>
-        <ImageView fitHeight="67.0" fitWidth="148.0" layoutX="527.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="67.0" fitWidth="148.0" layoutX="527.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../../../Assets/Images/privacy_icon.png" />
             </image>
         </ImageView>
-        <ImageView fx:id="musicicon" fitHeight="67.0" fitWidth="63.0" layoutX="376.0" layoutY="214.0" onMouseClicked="#no_music" pickOnBounds="true" preserveRatio="true">
+        <ImageView fx:id="musicicon" fitHeight="67.0" fitWidth="63.0" layoutX="376.0" layoutY="239.0" onMouseClicked="#no_music" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../../../Assets/Images/music_icon.png" />
             </image>
         </ImageView>
-        <ImageView fx:id="soundicon" fitHeight="60.0" fitWidth="63.0" layoutX="376.0" layoutY="303.0" onMouseClicked="#no_sound" pickOnBounds="true" preserveRatio="true">
+        <ImageView fx:id="soundicon" fitHeight="60.0" fitWidth="63.0" layoutX="376.0" layoutY="327.0" onMouseClicked="#no_sound" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../../../Assets/Images/sound_icon.png" />
             </image>
         </ImageView>
-        <ImageView fitHeight="74.0" fitWidth="72.0" layoutX="348.0" layoutY="405.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="74.0" fitWidth="72.0" layoutX="348.0" layoutY="420.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../../../Assets/Images/save_progress_icon.png" />
             </image>
         </ImageView>
-        <ImageView fitHeight="60.0" fitWidth="302.0" layoutX="451.0" layoutY="414.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="60.0" fitWidth="302.0" layoutX="451.0" layoutY="435.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../../../Assets/Images/save_progress.png" />
             </image>
         </ImageView>
-        <ImageView fitHeight="67.0" fitWidth="154.0" layoutX="479.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="67.0" fitWidth="154.0" layoutX="479.0" layoutY="239.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../../../Assets/Images/music.png" />
             </image>
         </ImageView>
-        <ImageView fitHeight="67.0" fitWidth="154.0" layoutX="479.0" layoutY="305.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="67.0" fitWidth="154.0" layoutX="479.0" layoutY="327.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../../../Assets/Images/sound.png" />
             </image>
         </ImageView>
-        <ImageView fitHeight="75.0" fitWidth="76.0" layoutX="24.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="75.0" fitWidth="76.0" layoutX="24.0" layoutY="22.0" onMouseClicked="#backtomain" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../../../Assets/Images/close_icom.png" />
             </image>
@@ -68,10 +68,25 @@
             <Image url="@Images/coins.png" />
          </image>
       </ImageView>
-      <Label layoutX="830.0" layoutY="39.0" prefHeight="48.0" prefWidth="118.0" text="235" textFill="#f1f51f">
+      <Label layoutX="826.0" layoutY="39.0" prefHeight="48.0" prefWidth="118.0" text="235" textFill="#f1f51f">
          <font>
             <Font name="Arial Bold" size="46.0" />
          </font>
       </Label>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="90.0" layoutY="270.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Images/Islands11.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="119.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Images/Tree3.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="105.0" fitWidth="120.0" layoutX="443.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Images/hero1.png" />
+         </image>
+      </ImageView>
     </children>
 </AnchorPane>

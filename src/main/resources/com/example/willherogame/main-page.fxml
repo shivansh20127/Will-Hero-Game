@@ -32,7 +32,7 @@
             <Image url="@../../../Assets/Images/island4.png" />
          </image>
       </ImageView>
-      <Button layoutX="392.0" layoutY="178.0" mnemonicParsing="false" onMouseClicked="#backtomainfromgame" prefHeight="50.0" prefWidth="240.0" text="New Game" />
+      <Button layoutX="392.0" layoutY="178.0" mnemonicParsing="false" onAction="#showGameplay" prefHeight="50.0" prefWidth="240.0" text="New Game" />
       <Button layoutX="392.0" layoutY="256.0" mnemonicParsing="false" onAction="#showSavedGames" prefHeight="50.0" prefWidth="240.0" text="Load Game" />
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="75.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -49,19 +49,19 @@
             <Image url="@../../../Assets/Images/hero1.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="91.0" fitWidth="106.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#showsettings" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="91.0" fitWidth="106.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#showSettings" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../Assets/Images/settings_icon1.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="144.0" fitWidth="208.0" layoutX="413.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@Images/logo_icon.png" />
+            <Image url="@../../../Assets/Images/logo_icon.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="41.0" fitWidth="43.0" layoutX="233.0" layoutY="453.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@Images/Orc3.png" />
+            <Image url="@../../../Assets/Images/Orc3.png" />
          </image>
       </ImageView>
    </children>

@@ -22,13 +22,23 @@ public class AppController
 {
     @FXML
     private ImageView soundIcon;
-    private boolean sound = true;
-    
     @FXML
     private ImageView musicIcon;
-    private boolean music = true;
+    
+    private boolean sound;
+    private boolean music;
     
     private GamePlayController gamePlayController;
+    
+    public AppController() {
+        sound = true;
+        music = true;
+    }
+    
+    @FXML
+    public void initialize() {
+    
+    }
     
     @FXML
     public void showCreateAccountPage(ActionEvent event) throws IOException {
@@ -74,17 +84,17 @@ public class AppController
         Scene scene = new Scene(anchorPane);
         stage.setScene(scene);
     }
-
+    
     @FXML
     public void showGameplay(Event event) throws IOException {
-        System.out.println("HERE SHOWING");
+//        System.out.println("HERE SHOWING");
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("gameplay.fxml"));
         AnchorPane anchorPane = fxmlLoader.load();
         Scene scene = new Scene(anchorPane);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//        gamePlayController = new GamePlayController(anchorPane);
         stage.setScene(scene);
-        System.out.println("SHOW ENDEDDDDDDDDDDDDDD");
+//        gamePlayController = new GamePlayController(anchorPane);
+//        System.out.println("SHOW ENDEDDDDDDDDDDDDDD");
     }
     
     

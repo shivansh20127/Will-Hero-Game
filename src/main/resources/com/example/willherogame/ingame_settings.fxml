@@ -83,7 +83,7 @@
                 <Image url="@../../../Assets/Images/Tree3.png" />
             </image>
         </ImageView>
-        <ImageView fitHeight="105.0" fitWidth="120.0" layoutX="443.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="105.0" fitWidth="120.0" layoutX="801.0" layoutY="198.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../../../Assets/Images/GameIsland2.png" />
             </image>

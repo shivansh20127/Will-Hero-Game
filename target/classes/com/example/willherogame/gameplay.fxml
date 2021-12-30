@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="630.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.willherogame.GamePlayController">
+<AnchorPane fx:id="root" maxHeight="630.0" maxWidth="1020.0" minHeight="630.0" minWidth="1020.0" prefHeight="630.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.willherogame.GamePlayController">
    <children>
-      <ImageView fitHeight="630.0" fitWidth="1020.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="650.0" fitWidth="1030.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../Assets/Images/login_Background.jpg" />
          </image>
@@ -29,61 +29,11 @@
             <Image url="@../../../Assets/Images/coins.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="island3" fitHeight="259.0" fitWidth="352.0" layoutX="619.0" layoutY="326.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../Assets/Images/GameIsland1.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="island2" fitHeight="184.0" fitWidth="194.0" layoutX="300.0" layoutY="317.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../Assets/Images/GameIsland1.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="hero" fitHeight="65.0" fitWidth="84.0" layoutX="18.0" layoutY="167.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../Assets/Images/hero1.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="809.0" layoutY="176.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../Assets/Images/Tree1.png" />
-         </image>
-      </ImageView>
       <Label layoutX="823.0" layoutY="16.0" prefHeight="48.0" prefWidth="118.0" text="235" textFill="#f1f51f">
          <font>
             <Font name="Silom" size="46.0" />
          </font>
       </Label>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="667.0" layoutY="176.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../Assets/Images/Tree2.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="59.0" fitWidth="73.0" layoutX="719.0" layoutY="267.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../Assets/Images/TNT.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="65.0" fitWidth="75.0" layoutX="894.0" layoutY="261.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../Assets/Images/Orc2.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="407.0" layoutY="167.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../Assets/Images/Tree2.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="island1" fitHeight="225.0" fitWidth="328.0" layoutX="-116.0" layoutY="312.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../Assets/Images/GameIsland2.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="65.0" fitWidth="75.0" layoutX="101.0" layoutY="198.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../Assets/Images/Orc2.png" />
-         </image>
-      </ImageView>
-      <Button layoutX="429.0" layoutY="546.0" mnemonicParsing="false" onAction="#moveForward" prefHeight="63.0" prefWidth="131.0" text="Move Hero" />
+      <Button layoutX="429.0" layoutY="546.0" mnemonicParsing="false" onAction="#moveClick" prefHeight="63.0" prefWidth="131.0" text="Move Hero" />
    </children>
 </AnchorPane>

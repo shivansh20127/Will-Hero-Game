@@ -1,6 +1,5 @@
 package com.example.willherogame;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -18,6 +17,7 @@ public class Application extends javafx.application.Application
         stage.setTitle("Will Hero");
         stage.setScene(scene);
         stage.setResizable(false);
+
         stage.show();
         
         stage.setOnCloseRequest(event -> {
@@ -26,6 +26,7 @@ public class Application extends javafx.application.Application
         });
     }
     
+    // to be preferably put in AppController
     public void logout(Stage stage) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Logout");

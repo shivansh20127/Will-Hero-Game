@@ -19,16 +19,27 @@ public abstract class GameObject implements Serializable
     protected ImageView img;
     protected double width, height;
     protected static Timeline objTimeline;
-    protected double v_x;
+    protected double v_x = 10;
+    protected double toMove = -100;
+    
+    public double getToMove() {
+        return toMove;
+    }
+    
+    public void setToMove(double toMove) {
+        this.toMove = toMove;
+    }
+    
+    public double getV_x() {
+        return v_x;
+    }
     
     public GameObject() {
         objTimeline = null;
-        this.v_x = 0;
         this.coordinates = new Coordinates(0, 0);
     }
     
     public void renderImage(AnchorPane pane) {
-        System.out.println("Path: " + this.path);
         String url = Objects.requireNonNull(getClass().getResource(path)).toString();
         img = new ImageView(new Image(url, width, height, true, false));
         img.setX(coordinates.getX());
@@ -66,16 +77,36 @@ public abstract class GameObject implements Serializable
     
     public ImageView getImg() {return img;}
     
-    private static void moveBack(GameObject go) {
-        int offset = -100;
-        TranslateTransition tt = new TranslateTransition(Duration.millis(100), go.getImg());
-        tt.setByX(offset);
-        tt.setCycleCount(1);
-        tt.play();
-        go.setXCoordinate(go.getCoordinates().getX() + offset);
+    private void moveBack(GameObject go) {
+        objTimeline = new Timeline(new KeyFrame(Duration.millis(20), e -> moveObjectBack(go)));
+        objTimeline.setCycleCount(10);
+        objTimeline.play();
+
+//        TranslateTransition tt = new TranslateTransition(Duration.millis(100), go.getImg());
+//        tt.setByX(go.getToMove());
+//        tt.setCycleCount(1);
+//        tt.play();
     }
     
-    public static void moveAllBack(ArrayList<GameObject> gameObjects) {
+    public void moveObjectBack(GameObject go) {
+        if (go.getClass().equals(WeakOrc.class) || go.getClass().equals(StrongOrc.class)) {
+            Orc orcc = (Orc) go;
+            orcc.moveObjectBack();
+        }
+        else if (go.getClass().equals(BossOrc.class)) {
+            BossOrc bossOrc = (BossOrc) go;
+            bossOrc.moveObjectBack();
+        }
+        else {
+            go.getImg().setLayoutX(go.getImg().getLayoutX() - getV_x());
+            go.setXCoordinate(go.getCoordinates().getX() + go.getToMove());
+        }
+    }
+    
+    public void setV_x(double vx) {this.v_x = vx;}
+    
+    
+    public void moveAllBack(ArrayList<GameObject> gameObjects) {
         for (GameObject go : gameObjects) moveBack(go);
     }
     

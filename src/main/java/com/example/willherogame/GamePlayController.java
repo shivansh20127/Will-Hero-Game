@@ -24,7 +24,7 @@ public class GamePlayController implements Initializable
     private ArrayList<GameObject> gameObjects;
     private ArrayList<Island> islands;
     private ArrayList<Orc> orcs;
-    private Hero hero;
+    private static Hero hero;
     private Random random;
     
     private final int noOfIslands = 20;
@@ -32,7 +32,7 @@ public class GamePlayController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.random = new Random();
-        this.hero = new Hero();
+        hero = new Hero();
         this.islands = new ArrayList<>();
         this.orcs = new ArrayList<>();
         this.gameObjects = new ArrayList<>();
@@ -56,7 +56,7 @@ public class GamePlayController implements Initializable
             orc.startJumping(islands);
         }
     }
-    
+
     private void createDefaultIslands() {
         for (int i = 0; i < noOfIslands; i++) {
             Island island = new Island(350 * i - 100, 310);
@@ -87,7 +87,7 @@ public class GamePlayController implements Initializable
     @FXML
     public void moveClick(Event e)
     {
-        GameObject.moveAllBack(gameObjects);
+        gameObjects.get(0).moveAllBack(gameObjects);
     }
 
     @FXML
@@ -99,6 +99,7 @@ public class GamePlayController implements Initializable
         stage.setScene(scene);
     }
     
+    public static Hero getHero() { return hero; }
 }
 
 

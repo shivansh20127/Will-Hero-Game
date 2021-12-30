@@ -54,23 +54,29 @@ public class Hero extends GameObject
     
     private boolean isSurfaceCollidingWithIsland(ArrayList<Island> islands) {
         for (Island island : islands) {
-            
-            double islandX = island.getCoordinates().getX();
-            double islandY = island.getCoordinates().getY() - 5;
-            double heroWidth = img.getFitWidth() * widthScale;
-            double heroHeight = img.getFitHeight() * heightScale;
-            double heroX = getCoordinates().getX() + img.getFitWidth() - heroWidth;
-            double heroY = getCoordinates().getY();
-            double islandWidth = island.getImg().getFitWidth();
-            
-            if (heroX + heroWidth >= islandX &&
-                    heroX <= islandX + islandWidth &&
-                    heroY + heroHeight >= islandY) {
-                return true;
-            }
+            if (island.getImg().getBoundsInParent().intersects(getImg().getBoundsInParent())) return true;
         }
         return false;
     }
+//    private boolean isSurfaceCollidingWithIsland(ArrayList<Island> islands) {
+//        for (Island island : islands) {
+//
+//            double islandX = island.getCoordinates().getX();
+//            double islandY = island.getCoordinates().getY() - 5;
+//            double heroWidth = img.getFitWidth() * widthScale;
+//            double heroHeight = img.getFitHeight() * heightScale;
+//            double heroX = getCoordinates().getX() + img.getFitWidth() - heroWidth;
+//            double heroY = getCoordinates().getY();
+//            double islandWidth = island.getImg().getFitWidth();
+//
+//            if (heroX + heroWidth >= islandX &&
+//                    heroX <= islandX + islandWidth &&
+//                    heroY + heroHeight >= islandY) {
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
     
     
 }

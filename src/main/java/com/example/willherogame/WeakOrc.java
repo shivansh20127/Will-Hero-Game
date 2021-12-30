@@ -1,11 +1,5 @@
 package com.example.willherogame;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.util.Duration;
-
-import java.util.ArrayList;
-
 public class WeakOrc extends Orc
 {
     public WeakOrc(double x, double y) {

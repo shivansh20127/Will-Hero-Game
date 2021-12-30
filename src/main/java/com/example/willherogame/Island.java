@@ -16,7 +16,7 @@ public class Island extends GameObject
         this.islandID = (islandCount % 3) + 1;
 //        this.islandID = 2;
         this.path = "/Assets/Images/GameIsland" + islandID + ".png";
-        this.setCoordinates(x, y);
+        this.setCoordinates(x, y + random.nextInt(100) - 50);
         
         if (islandID == 1) {
             height = 225 * islandScale;

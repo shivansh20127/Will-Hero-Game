@@ -48,8 +48,14 @@ public class GamePlayController implements Initializable
     
     private void startAnimation() {
         hero.startJumping(islands);
+        startOrcJumping();
     }
     
+    private void startOrcJumping() {
+        for (Orc orc : orcs) {
+            orc.startJumping(islands);
+        }
+    }
     
     private void createDefaultIslands() {
         for (int i = 0; i < noOfIslands; i++) {
@@ -60,11 +66,15 @@ public class GamePlayController implements Initializable
     }
     
     private void createDefaultOrcs() {
-        for (int i = 0; i < noOfIslands; i += 2) {
+        for (int i = 2; i < noOfIslands; i += 2) {
             double orcX = islands.get(i).getCoordinates().getX() + 30;
-            double orcY = islands.get(i).getCoordinates().getY() + 60;
+            double orcY = islands.get(i).getCoordinates().getY() - 120;
             WeakOrc weakOrc = new WeakOrc(orcX, orcY);
-            StrongOrc strongOrc = new StrongOrc(orcX + 40, orcY);
+            StrongOrc strongOrc = new StrongOrc(orcX + 50, orcY);
+            orcs.add(weakOrc);
+            orcs.add(strongOrc);
+            gameObjects.add(weakOrc);
+            gameObjects.add(strongOrc);
         }
     }
     

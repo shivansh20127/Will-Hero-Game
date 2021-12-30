@@ -66,11 +66,6 @@ public class Hero extends GameObject
             if (heroX + heroWidth >= islandX &&
                     heroX <= islandX + islandWidth &&
                     heroY + heroHeight >= islandY) {
-//                System.out.println("COLLISION WITH: " + island);
-//                System.out.println("[" + island.getCoordinates().getX() + ", " + island.getCoordinates().getY() + "]");
-//                System.out.println(img.getY());
-//                System.out.println(img.getLayoutY());
-//                System.out.println(img.getTranslateY());
                 return true;
             }
         }

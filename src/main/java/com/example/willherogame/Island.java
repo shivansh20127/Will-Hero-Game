@@ -10,11 +10,10 @@ public class Island extends GameObject
     private final static Random random = new Random();
     private static int islandCount = 0;
     
-    public Island(int x, int y) {
+    public Island(double x, double y) {
         super();
         islandCount++;
         this.islandID = (islandCount % 3) + 1;
-//        this.islandID = 2;
         this.path = "/Assets/Images/GameIsland" + islandID + ".png";
         this.setCoordinates(x, y + random.nextInt(100) - 50);
         

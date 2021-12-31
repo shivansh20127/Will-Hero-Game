@@ -17,7 +17,6 @@ public class Application extends javafx.application.Application
         stage.setTitle("Will Hero");
         stage.setScene(scene);
         stage.setResizable(false);
-
         stage.show();
         
         stage.setOnCloseRequest(event -> {
@@ -38,6 +37,7 @@ public class Application extends javafx.application.Application
             stage.close();
         }
     }
+    
     
     public static void main(String[] args) {
         launch();

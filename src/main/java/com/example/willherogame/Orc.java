@@ -26,24 +26,24 @@ public abstract class Orc extends GameObject
     }
     
     public void moveObjectBack() {
-        ImageView hero = GamePlayController.getHero().getImg();
-        if (hero.getBoundsInParent().intersects(getImg().getBoundsInParent())) {
-            objTimeline.stop();
-            TranslateTransition tt = new TranslateTransition(Duration.millis(100), getImg());
-            tt.setByX(-getToMove());
-            tt.setCycleCount(1);
-            tt.play();
-        }
-        else {
-            getImg().setLayoutX(getImg().getLayoutX() - getV_x());
-            setXCoordinate(getCoordinates().getX() + getToMove());
-        }
+//        ImageView hero = GamePlayController.getHero().getImg();
+//        if (hero.getBoundsInParent().intersects(getImg().getBoundsInParent())) {
+//            objTimeline.stop();
+//            TranslateTransition tt = new TranslateTransition(Duration.millis(100), getImg());
+//            tt.setByX(-getToMove());
+//            tt.setCycleCount(1);
+//            tt.play();
+//        }
+//        else {
+        getImg().setLayoutX(getImg().getLayoutX() - getV_x());
+        setXCoordinate(getCoordinates().getX() + getToMove() / 10);
+//        }
     }
     
-    public void startJumping(ArrayList<Island> islands) {
+    public void startJumping() {
         // movement in y direction starts / resumes
         if (jumpTimeline == null) {
-            jumpTimeline = new Timeline(new KeyFrame(Duration.millis(50), e -> moveOrcY(islands)));
+            jumpTimeline = new Timeline(new KeyFrame(Duration.millis(50), e -> moveOrcY()));
             jumpTimeline.setCycleCount(Timeline.INDEFINITE);
         }
         jumpTimeline.play();
@@ -53,23 +53,26 @@ public abstract class Orc extends GameObject
         jumpTimeline.pause();
     }
     
-    private void moveOrcY(ArrayList<Island> islands) {
+    private void moveOrcY() {
         // movement in Y direction
         
         img.setY(img.getY() + v_y);
         getCoordinates().setY(getCoordinates().getY() + v_y);
         v_y += GRAVITY;
-        if (isSurfaceCollidingWithIsland(islands)) {
+        if (isSurfaceCollidingWithIsland()) {
             v_y = -MAX_Y;
         }
     }
     
-    private boolean isSurfaceCollidingWithIsland(ArrayList<Island> islands) {
-        for (Island island : islands) {
+    private boolean isSurfaceCollidingWithIsland() {
+        for (Island island : GamePlayController.getIslands()) {
             if (island.getImg().getBoundsInParent().intersects(getImg().getBoundsInParent())) return true;
         }
         return false;
     }
+    
+//    public Timeline getJumpTimeline() {return jumpTimeline;}
+
 //    private boolean isSurfaceCollidingWithIsland(ArrayList<Island> islands) {
 //        for (Island island : islands) {
 //            double islandX = island.getCoordinates().getX();

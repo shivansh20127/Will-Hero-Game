@@ -29,7 +29,7 @@
             <Image url="@../../../Assets/Images/coins.png" />
          </image>
       </ImageView>
-      <Label layoutX="823.0" layoutY="16.0" prefHeight="48.0" prefWidth="118.0" text="235" textFill="#f1f51f">
+      <Label fx:id="coinDisplay" layoutX="823.0" layoutY="16.0" prefHeight="48.0" prefWidth="118.0" text="235" textFill="#f1f51f">
          <font>
             <Font name="Silom" size="46.0" />
          </font>

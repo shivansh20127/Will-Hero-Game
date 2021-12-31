@@ -18,12 +18,16 @@ public abstract class GameObject implements Serializable
     protected String path;
     protected ImageView img;
     protected double width, height;
-    protected static Timeline objTimeline;
+    protected Timeline objTimeline;
     protected double v_x = 10;
     protected double toMove = -100;
     
     public double getToMove() {
         return toMove;
+    }
+    
+    public Timeline getObjTimeline() {
+        return objTimeline;
     }
     
     public void setToMove(double toMove) {
@@ -78,7 +82,7 @@ public abstract class GameObject implements Serializable
     public ImageView getImg() {return img;}
     
     private void moveBack(GameObject go) {
-        objTimeline = new Timeline(new KeyFrame(Duration.millis(20), e -> moveObjectBack(go)));
+        objTimeline = new Timeline(new KeyFrame(Duration.millis(5), e -> moveObjectBack(go)));
         objTimeline.setCycleCount(10);
         objTimeline.play();
 
@@ -92,6 +96,7 @@ public abstract class GameObject implements Serializable
         if (go.getClass().equals(WeakOrc.class) || go.getClass().equals(StrongOrc.class)) {
             Orc orcc = (Orc) go;
             orcc.moveObjectBack();
+//            System.out.println(go + ": " + go.getCoordinates().getX());
         }
         else if (go.getClass().equals(BossOrc.class)) {
             BossOrc bossOrc = (BossOrc) go;
@@ -99,7 +104,7 @@ public abstract class GameObject implements Serializable
         }
         else {
             go.getImg().setLayoutX(go.getImg().getLayoutX() - getV_x());
-            go.setXCoordinate(go.getCoordinates().getX() + go.getToMove());
+            go.setXCoordinate(go.getCoordinates().getX() + go.getToMove() / 10);
         }
     }
     
@@ -107,7 +112,9 @@ public abstract class GameObject implements Serializable
     
     
     public void moveAllBack(ArrayList<GameObject> gameObjects) {
-        for (GameObject go : gameObjects) moveBack(go);
+        for (GameObject go : gameObjects) {
+            moveBack(go);
+        }
     }
     
 }

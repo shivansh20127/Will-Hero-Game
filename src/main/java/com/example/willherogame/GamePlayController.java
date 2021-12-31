@@ -1,14 +1,17 @@
 package com.example.willherogame;
 
+import javafx.animation.KeyFrame;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
@@ -20,43 +23,69 @@ public class GamePlayController implements Initializable
 {
     @FXML
     private AnchorPane root;
+    @FXML
+    private Label coinDisplay;
     
-    private ArrayList<GameObject> gameObjects;
-    private ArrayList<Island> islands;
-    private ArrayList<Orc> orcs;
+//    private int collectedCoins;
+    private static ArrayList<GameObject> gameObjects;
+    private static ArrayList<Island> islands;
+    private static ArrayList<Orc> orcs;
+    private static ArrayList<Coin> coins;
     private static Hero hero;
     private Random random;
+    private Game game;
     
     private final int noOfIslands = 20;
     
+    public static ArrayList<GameObject> getGameObjects() {
+        return gameObjects;
+    }
+    
+    public static ArrayList<Coin> getCoins() {
+        return coins;
+    }
+    
+    public static ArrayList<Island> getIslands() {
+        return islands;
+    }
+    
+    public static ArrayList<Orc> getOrcs() {
+        return orcs;
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        coinDisplay.setText("0");
+//        collectedCoins = 0;
         this.random = new Random();
         hero = new Hero();
-        this.islands = new ArrayList<>();
-        this.orcs = new ArrayList<>();
-        this.gameObjects = new ArrayList<>();
+        islands = new ArrayList<>();
+        orcs = new ArrayList<>();
+        coins = new ArrayList<>();
+        gameObjects = new ArrayList<>();
         createDefaultIslands();
         createDefaultOrcs();
+        createDefaultCoins();
         hero.renderImage(root);
         renderGameObjects();
         startAnimation();
+        this.game = new Game(hero);
+        hero.setGame(game);
     }
     
-//    public void initialize() {
-//    }
-    
     private void startAnimation() {
-        hero.startJumping(islands);
+        hero.startJumping();
         startOrcJumping();
+        hero.getJumpTimeline().getKeyFrames().add(new KeyFrame(Duration.ZERO, event -> {
+            coinDisplay.setText(Integer.toString(hero.getCollectedCoins()));}));
     }
     
     private void startOrcJumping() {
         for (Orc orc : orcs) {
-            orc.startJumping(islands);
+            orc.startJumping();
         }
     }
-
+    
     private void createDefaultIslands() {
         for (int i = 0; i < noOfIslands; i++) {
             Island island = new Island(350 * i - 100, 310);
@@ -69,12 +98,25 @@ public class GamePlayController implements Initializable
         for (int i = 2; i < noOfIslands; i += 2) {
             double orcX = islands.get(i).getCoordinates().getX() + 30;
             double orcY = islands.get(i).getCoordinates().getY() - 120;
-            WeakOrc weakOrc = new WeakOrc(orcX, orcY);
-            StrongOrc strongOrc = new StrongOrc(orcX + 50, orcY);
-            orcs.add(weakOrc);
-            orcs.add(strongOrc);
-            gameObjects.add(weakOrc);
-            gameObjects.add(strongOrc);
+            
+            Orc orc = null;
+            if (i % 4 == 0) orc = new WeakOrc(orcX, orcY);
+            else orc = new StrongOrc(orcX + 50, orcY);
+            orcs.add(orc);
+            gameObjects.add(orc);
+        }
+    }
+    
+    private void createDefaultCoins() {
+        for (int i = 1; i < noOfIslands; i += 2) {
+            int offset = (random.nextInt() % 30) + 50;
+            double coiny = islands.get(i).getCoordinates().getY() - offset;
+            for (int j = 0; j < 5; j++) {
+                double coinx = islands.get(i).getCoordinates().getX() + 30 + 20 * j;
+                Coin coin = new Coin(coinx, coiny);
+                coins.add(coin);
+                gameObjects.add(coin);
+            }
         }
     }
     
@@ -85,11 +127,11 @@ public class GamePlayController implements Initializable
     }
     
     @FXML
-    public void moveClick(Event e)
-    {
+    public void moveClick(Event e) {
+        coinDisplay.setText(Integer.toString(hero.getCollectedCoins()));
         gameObjects.get(0).moveAllBack(gameObjects);
     }
-
+    
     @FXML
     public void showInGameSettings(MouseEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ingame_settings.fxml"));
@@ -99,7 +141,14 @@ public class GamePlayController implements Initializable
         stage.setScene(scene);
     }
     
-    public static Hero getHero() { return hero; }
+    public static Hero getHero() {return hero;}
+    
+//    public void incrementCoins() {
+//        collectedCoins++;
+//        this.getCoinDisplay().setText(Integer.toString(collectedCoins));
+//    }
+////
+//    public Label getCoinDisplay() { return coinDisplay; }
 }
 
 

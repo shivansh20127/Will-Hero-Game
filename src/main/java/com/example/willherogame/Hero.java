@@ -91,6 +91,13 @@ public class Hero extends GameObject implements Serializable
         checkCoinCollision();
         checkObstacleCollision();
         checkChestCollision();
+        checkFall();
+    }
+    
+    private void checkFall() throws IOException {
+        if (img.getY() > 450) {
+            resurrectHero();
+        }
     }
     
     private void checkObstacleCollision() throws IOException {
@@ -140,6 +147,7 @@ public class Hero extends GameObject implements Serializable
                 if (col == 0) {
                     System.out.println("FACE COLLISION");
                     TranslateTransition tt = new TranslateTransition(Duration.millis(100), orc.getImg());
+                    if (orc.getClass() == BossOrc.class)  tt.setDuration(Duration.millis(10));
                     tt.setByX(-orc.getToMove());
                     tt.setCycleCount(1);
                     tt.play();

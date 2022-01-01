@@ -24,7 +24,7 @@ public class Game implements Serializable
     private final ArrayList<Island> islands;
     private final ArrayList<Orc> orcs;
     private final ArrayList<Coin> coins;
-    private final ArrayList<Timeline> timelines;
+    private transient final ArrayList<Timeline> timelines;
     private final ArrayList<Obstacle> obstacles;
     private final ArrayList<Chest> chests;
     private final ArrayList<Weapon> weapons;
@@ -105,6 +105,7 @@ public class Game implements Serializable
         createDefaultCoins();
         createDefaultObstacles();
         createDefaultChests();
+        createBossOrc();
     }
     
     public void renderObjects() {
@@ -155,6 +156,18 @@ public class Game implements Serializable
             getOrcs().add(orc);
             getGameObjects().add(orc);
         }
+    }
+    
+    private void createBossOrc() {
+//        double orcx = islands.get(islands.size() - 1).getCoordinates().getX() + 30;
+//        double orcy = islands.get(islands.size() - 1).getCoordinates().getY() - 200;
+        double orcx = islands.get(33).getCoordinates().getX() + 30;
+        double orcy = islands.get(33).getCoordinates().getY() - 200;
+//        double orcx = islands.get(3).getCoordinates().getX() + 30;
+//        double orcy = islands.get(3).getCoordinates().getY() - 200;
+        BossOrc orc = new BossOrc(orcx, orcy, this);
+        orcs.add(orc);
+        gameObjects.add(orc);
     }
     
     private void createDefaultCoins() {

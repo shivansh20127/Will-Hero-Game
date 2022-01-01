@@ -39,7 +39,7 @@ public class AppController implements Initializable
     
     @FXML
     public void startNewGame(Event event) throws IOException {
-        currentGame = new Game(20);
+        currentGame = new Game(35);
         currentGame.initialiseData();
         Application.getDatabase().addGame(currentGame);
         showGameplay(event);

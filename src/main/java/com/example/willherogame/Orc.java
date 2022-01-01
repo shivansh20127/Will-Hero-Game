@@ -64,9 +64,14 @@ public abstract class Orc extends GameObject implements Serializable
             v_y = -MAX_Y;
         }
         checkWeaponCollision();
+        checkFall();
     }
     
-    private void checkWeaponCollision() {
+    protected void checkFall() {
+        if (img.getY() > 450) killOrc();
+    }
+    
+    protected void checkWeaponCollision() {
         for (Weapon w : game.getWeapons()) {
             if (w.getImg().getBoundsInParent().intersects(getImg().getBoundsInParent())) {
                 killOrc();
@@ -75,7 +80,9 @@ public abstract class Orc extends GameObject implements Serializable
         }
     }
     
-    private void killOrc() {
+    protected void killOrc() {
+        setXCoordinate(-1000);
+        img.setX(-1000);
         jumpTimeline.stop();
     }
     

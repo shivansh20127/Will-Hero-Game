@@ -56,7 +56,7 @@ public class SavedGamesController implements Initializable
             System.out.println("game not found, id = " + id);
             System.exit(0);
         }
-        AppController.getCurrentGame().renderObjects();
+        AppController.getCurrentGame().initialiseData();
         AppController.showGameplay(event);
     }
     

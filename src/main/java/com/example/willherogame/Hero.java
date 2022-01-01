@@ -19,6 +19,7 @@ public class Hero extends GameObject implements Serializable
     private static final double MAX_Y = 14;
     private transient Timeline jumpTimeline;
     private int collectedCoins;
+    private int currentWeapon;
     
     public Hero(Game game) {
         super(game);
@@ -28,7 +29,23 @@ public class Hero extends GameObject implements Serializable
         this.v_y = 0;
         this.jumpTimeline = null;
         this.collectedCoins = 0;
+        // -1 -------> no weapon
+        // 0 --------> shuriken
+        // 1 --------> throwing knife
+        this.currentWeapon = -1;
         setCoordinates(220, 0);
+    }
+    
+    public int getCurrentWeapon() {
+        return currentWeapon;
+    }
+    
+    public void setCollectedCoins(int collectedCoins) {
+        this.collectedCoins = collectedCoins;
+    }
+    
+    public void setCurrentWeapon(int currentWeapon) {
+        this.currentWeapon = currentWeapon;
     }
     
     public void setGame(Game game) {
@@ -60,6 +77,26 @@ public class Hero extends GameObject implements Serializable
         }
         checkOrcCollision();
         checkCoinCollision();
+        checkObstacleCollision();
+        checkChestCollision();
+    }
+    
+    private void checkObstacleCollision() {
+        for (Obstacle obstacle : game.getObstacles()) {
+            if (obstacle.getImg().getBoundsInParent().intersects(getImg().getBoundsInParent())) {
+                resurrectHero();
+                break;
+            }
+        }
+    }
+    
+    private void checkChestCollision() {
+        for (Chest chest : game.getChests()) {
+            if (chest.getImg().getBoundsInParent().intersects(getImg().getBoundsInParent())) {
+                chest.heroEffect(this);
+                break;
+            }
+        }
     }
     
     private void checkCoinCollision() {
@@ -69,6 +106,12 @@ public class Hero extends GameObject implements Serializable
                 collectedCoins++;
             }
         }
+    }
+    
+    private void resurrectHero() {
+        // resurrect
+        // game over
+        jumpTimeline.stop();
     }
     
     private void checkOrcCollision() {
@@ -84,10 +127,10 @@ public class Hero extends GameObject implements Serializable
                 }
                 else if (col == -1) {
                     System.out.println("BOTTOM COLLISION");
+                    resurrectHero();
 //                    // resurrect
 //                    // game over
                     orc.getJumpTimeline().stop();
-                    jumpTimeline.stop();
                 }
                 else {
                     System.out.println("TOP COLLISION");

@@ -83,6 +83,11 @@ public abstract class GameObject implements Serializable
     
     public ImageView getImg() {return img;}
     
+    public void setImg(String newPath) {
+        String newUrl = Objects.requireNonNull(getClass().getResource(newPath)).toString();
+        img.setImage(new Image(newUrl, img.getFitWidth(), img.getFitWidth(), true, false));
+    }
+    
     private void moveBack(GameObject go) {
         objTimeline = new Timeline(new KeyFrame(Duration.millis(5), e -> moveObjectBack(go)));
         objTimeline.setCycleCount(10);

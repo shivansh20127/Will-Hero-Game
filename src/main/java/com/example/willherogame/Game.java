@@ -18,6 +18,8 @@ public class Game implements Serializable
     private final ArrayList<Orc> orcs;
     private final ArrayList<Coin> coins;
     private final ArrayList<Timeline> timelines;
+    private final ArrayList<Obstacle> obstacles;
+    private final ArrayList<Chest> chests;
     private transient AnchorPane root;
     private final int noOfIslands;
     private final Random random;
@@ -34,6 +36,8 @@ public class Game implements Serializable
         orcs = new ArrayList<>();
         coins = new ArrayList<>();
         timelines = new ArrayList<>();
+        obstacles = new ArrayList<>();
+        chests = new ArrayList<>();
     }
     
     public void setRoot(AnchorPane anchorPane) {
@@ -56,6 +60,14 @@ public class Game implements Serializable
         return islands;
     }
     
+    public ArrayList<Obstacle> getObstacles() {
+        return obstacles;
+    }
+    
+    public ArrayList<Chest> getChests() {
+        return chests;
+    }
+    
     public ArrayList<Orc> getOrcs() {
         return orcs;
     }
@@ -76,6 +88,8 @@ public class Game implements Serializable
         createDefaultIslands();
         createDefaultOrcs();
         createDefaultCoins();
+        createDefaultObstacles();
+        createDefaultChests();
     }
     
     public void renderObjects() {
@@ -90,6 +104,28 @@ public class Game implements Serializable
             Island island = new Island(350 * i - 100, 310, this);
             getIslands().add(island);
             getGameObjects().add(island);
+        }
+    }
+    
+    private void createDefaultObstacles() {
+        for (int i = 3; i < noOfIslands; i += 5) {
+            double obx = islands.get(i).getCoordinates().getX() + 30;
+            double oby = islands.get(i).getCoordinates().getY() - 30;
+            Obstacle obstacle = new Obstacle(obx, oby, this);
+            obstacles.add(obstacle);
+            gameObjects.add(obstacle);
+        }
+    }
+    
+    private void createDefaultChests() {
+        for (int i = 2; i < noOfIslands; i += 5) {
+            double chestX = islands.get(i).getCoordinates().getX() + 30;
+            double chestY = islands.get(i).getCoordinates().getY() - 40;
+            Chest chest = null;
+            if ((i - 2) % 10 == 0) chest = new CoinChest(chestX, chestY, this);
+            else chest = new WeaponChest(chestX, chestY, this);
+            chests.add(chest);
+            gameObjects.add(chest);
         }
     }
     

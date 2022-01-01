@@ -1,11 +1,18 @@
 package com.example.willherogame;
 
+import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import javafx.util.Duration;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Game implements Serializable
 {
@@ -20,12 +27,15 @@ public class Game implements Serializable
     private final ArrayList<Timeline> timelines;
     private final ArrayList<Obstacle> obstacles;
     private final ArrayList<Chest> chests;
+    private final ArrayList<Weapon> weapons;
     private transient AnchorPane root;
     private final int noOfIslands;
     private final Random random;
+    private boolean toResurrect;
     
     public Game(int noOfIslands) {
-        this.random = new Random();
+        this.toResurrect = false;
+        this.random = new Random(12);
         this.hero = new Hero(this);
         this.currentPosition = 0;
         this.noOfIslands = noOfIslands;
@@ -38,6 +48,7 @@ public class Game implements Serializable
         timelines = new ArrayList<>();
         obstacles = new ArrayList<>();
         chests = new ArrayList<>();
+        weapons = new ArrayList<>();
     }
     
     public void setRoot(AnchorPane anchorPane) {
@@ -62,6 +73,10 @@ public class Game implements Serializable
     
     public ArrayList<Obstacle> getObstacles() {
         return obstacles;
+    }
+    
+    public ArrayList<Weapon> getWeapons() {
+        return weapons;
     }
     
     public ArrayList<Chest> getChests() {
@@ -179,6 +194,63 @@ public class Game implements Serializable
     @Override
     public String toString() {
         return "Game-" + gameID + ", Score - " + currentPosition;
+    }
+    
+    public void shootWeapon() {
+        Weapon throwWeapon = null;
+        double wx = hero.getCoordinates().getX() + 52;
+        double wy = hero.getCoordinates().getY() + 10;
+        if (hero.getCurrentWeapon() == 0) {
+            throwWeapon = new Shuriken(wx, wy, this);
+        }
+        else if (hero.getCurrentWeapon() == 1) {
+            throwWeapon = new Knife(wx, wy, this);
+        }
+        else return;
+        weapons.add(throwWeapon);
+        throwWeapon.renderImage(root);
+        Weapon finalThrowWeapon = throwWeapon;
+        throwWeapon.objTimeline = new Timeline(new KeyFrame(Duration.millis(50), e -> moveWeapon(finalThrowWeapon)));
+        throwWeapon.objTimeline.setCycleCount(20);
+        throwWeapon.objTimeline.play();
+        throwWeapon.objTimeline.setOnFinished(e -> removeWeapon(finalThrowWeapon));
+    }
+    
+    private void moveWeapon(Weapon w) {
+        w.getImg().setLayoutX(w.getImg().getLayoutX() + 10);
+        w.setXCoordinate(w.getCoordinates().getX() + 10);
+    }
+    
+    private void removeWeapon(Weapon w) {
+        w.getImg().setX(-1000);
+        w.setXCoordinate(-1000);
+    }
+    
+    public void endGame() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("main-page.fxml"));
+        AnchorPane anchorPane = fxmlLoader.load();
+        Stage stage = Application.getStage();
+        Scene scene = new Scene(anchorPane);
+        stage.setScene(scene);
+    }
+    
+    public boolean isToResurrect() {
+        return toResurrect;
+    }
+    
+    public void askResurrection() throws IOException {
+//        AtomicBoolean resAns = new AtomicBoolean(true);
+//        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("res.fxml"));
+//        Scene scene = new Scene(fxmlLoader.load());
+//        Stage resStage = new Stage();
+//        resStage.setScene(scene);
+//        resStage.show();
+//        resStage.setOnCloseRequest(e -> {
+//            e.consume();
+//            resAns.set(ResurrectController.getStatus());
+//            resStage.close();
+//        });
+//        this.toResurrect = resAns.get();
     }
     
 }

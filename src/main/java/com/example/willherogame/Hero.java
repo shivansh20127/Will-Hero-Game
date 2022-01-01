@@ -6,6 +6,7 @@ import javafx.animation.TranslateTransition;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -20,6 +21,7 @@ public class Hero extends GameObject implements Serializable
     private transient Timeline jumpTimeline;
     private int collectedCoins;
     private int currentWeapon;
+    private boolean resurrected;
     
     public Hero(Game game) {
         super(game);
@@ -29,6 +31,7 @@ public class Hero extends GameObject implements Serializable
         this.v_y = 0;
         this.jumpTimeline = null;
         this.collectedCoins = 0;
+        this.resurrected = false;
         // -1 -------> no weapon
         // 0 --------> shuriken
         // 1 --------> throwing knife
@@ -51,22 +54,31 @@ public class Hero extends GameObject implements Serializable
     public void setGame(Game game) {
         this.game = game;
     }
-    public Game getGame() { return this.game; }
+    
+    public Game getGame() {return this.game;}
     
     public void startJumping() {
         // movement in y direction starts / resumes
         if (jumpTimeline == null) {
-            jumpTimeline = new Timeline(new KeyFrame(Duration.millis(50), e -> moveHeroY()));
+            jumpTimeline = new Timeline(new KeyFrame(Duration.millis(50), e -> {
+                try {
+                    moveHeroY();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }));
             jumpTimeline.setCycleCount(Timeline.INDEFINITE);
         }
         jumpTimeline.play();
+        game.getTimelines().add(jumpTimeline);
+        
     }
     
     public void pauseJumping() {
         jumpTimeline.pause();
     }
     
-    private void moveHeroY() {
+    private void moveHeroY() throws IOException {
         // movement in Y direction
         
         img.setY(img.getY() + v_y);
@@ -81,7 +93,7 @@ public class Hero extends GameObject implements Serializable
         checkChestCollision();
     }
     
-    private void checkObstacleCollision() {
+    private void checkObstacleCollision() throws IOException {
         for (Obstacle obstacle : game.getObstacles()) {
             if (obstacle.getImg().getBoundsInParent().intersects(getImg().getBoundsInParent())) {
                 resurrectHero();
@@ -108,13 +120,20 @@ public class Hero extends GameObject implements Serializable
         }
     }
     
-    private void resurrectHero() {
+    private void resurrectHero() throws IOException {
         // resurrect
         // game over
-        jumpTimeline.stop();
+        jumpTimeline.pause();
+        if (!resurrected && collectedCoins > 20) {
+            game.askResurrection();
+            if (!game.isToResurrect()) game.endGame();
+            else jumpTimeline.play();
+        }
+        
+        else game.endGame();
     }
     
-    private void checkOrcCollision() {
+    private void checkOrcCollision() throws IOException {
         for (Orc orc : game.getOrcs()) {
             if (isColliding(orc)) {
                 int col = collisionType(orc);
@@ -154,25 +173,19 @@ public class Hero extends GameObject implements Serializable
     private int collisionType(Orc orc) {
         double heroXStart = getCoordinates().getX();
         double heroXEnd = heroXStart + getImg().getFitWidth();
-
+        
         double orcXStart = orc.getCoordinates().getX();
         double orcXEnd = orcXStart + orc.getImg().getFitWidth();
-
+        
         double heroYStart = getCoordinates().getY();
         double heroYEnd = heroYStart + getImg().getFitHeight();
-
+        
         double orcYStart = orc.getCoordinates().getY();
         double orcYEnd = orcYStart + orc.getImg().getFitHeight();
-
+        
         double xOverlap = Math.min(heroXEnd - orcXStart, orcXEnd - heroXStart);
         double yOverlap = Math.min(heroYEnd - orcYStart, orcYEnd - heroYStart);
-    
-//        System.out.println(orc.getCoordinates().getX());
-//        System.out.println(getCoordinates().getX());
-//        System.out.println(heroYStart + ", " + heroYEnd);
-//        System.out.println(orcYStart + ", " + orcYEnd);
-//        System.out.println(xOverlap);
-//        System.out.println(yOverlap);
+        
         if (yOverlap > xOverlap) return 0;
         if (heroYStart < orcYStart) return 1;
         return -1;
@@ -185,8 +198,8 @@ public class Hero extends GameObject implements Serializable
         return false;
     }
     
-    public Timeline getJumpTimeline() { return jumpTimeline; }
-    
+    public Timeline getJumpTimeline() {return jumpTimeline;}
+
 //    private boolean isSurfaceCollidingWithIsland(ArrayList<Island> islands) {
 //        for (Island island : islands) {
 //

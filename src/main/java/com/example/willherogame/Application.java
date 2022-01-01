@@ -11,9 +11,11 @@ import java.io.*;
 public class Application extends javafx.application.Application
 {
     private static Database database;
+    private static Stage mainRootStage;
     
     @Override
     public void start(Stage stage) throws IOException, ClassNotFoundException {
+        mainRootStage = stage;
         deserialize();
         FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("login-page.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
@@ -61,10 +63,11 @@ public class Application extends javafx.application.Application
         
         if (alert.showAndWait().get() == ButtonType.OK) {
             if (database != null) serialize();
-            System.out.println("You successfully logged out!");
             stage.close();
         }
     }
+    
+    public static Stage getStage() { return mainRootStage; }
     
     public static void main(String[] args) {
         launch();

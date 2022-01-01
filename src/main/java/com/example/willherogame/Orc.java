@@ -47,6 +47,7 @@ public abstract class Orc extends GameObject implements Serializable
             jumpTimeline.setCycleCount(Timeline.INDEFINITE);
         }
         jumpTimeline.play();
+        game.getTimelines().add(jumpTimeline);
     }
     
     public void pauseJumping() {
@@ -62,6 +63,20 @@ public abstract class Orc extends GameObject implements Serializable
         if (isSurfaceCollidingWithIsland()) {
             v_y = -MAX_Y;
         }
+        checkWeaponCollision();
+    }
+    
+    private void checkWeaponCollision() {
+        for (Weapon w : game.getWeapons()) {
+            if (w.getImg().getBoundsInParent().intersects(getImg().getBoundsInParent())) {
+                killOrc();
+                break;
+            }
+        }
+    }
+    
+    private void killOrc() {
+        jumpTimeline.stop();
     }
     
     private boolean isSurfaceCollidingWithIsland() {

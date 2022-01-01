@@ -15,5 +15,4 @@ public abstract class Chest extends GameObject implements Serializable
     }
     
     public abstract void heroEffect(Hero hero);
-    
 }

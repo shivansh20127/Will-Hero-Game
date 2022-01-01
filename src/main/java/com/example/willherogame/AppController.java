@@ -76,6 +76,7 @@ public class AppController implements Initializable
         stage.setScene(scene);
     }
     
+    
     @FXML
     public void showSavedGames(Event event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("show-saved-games.fxml"));

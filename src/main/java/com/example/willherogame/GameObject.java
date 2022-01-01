@@ -92,6 +92,7 @@ public abstract class GameObject implements Serializable
         objTimeline = new Timeline(new KeyFrame(Duration.millis(5), e -> moveObjectBack(go)));
         objTimeline.setCycleCount(10);
         objTimeline.play();
+        game.getTimelines().add(objTimeline);
 
 //        TranslateTransition tt = new TranslateTransition(Duration.millis(100), go.getImg());
 //        tt.setByX(go.getToMove());

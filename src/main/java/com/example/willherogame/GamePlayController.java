@@ -42,6 +42,7 @@ public class GamePlayController implements Initializable
     @FXML
     public void moveClick(Event e) {
         coinDisplay.setText(Integer.toString(game.getHero().getCollectedCoins()));
+        game.shootWeapon();
         game.getGameObjects().get(0).moveAllBack(game.getGameObjects());
         game.updateCurrentPosition();
         positionDisplay.setText(Integer.toString(game.getCurrentPosition()));

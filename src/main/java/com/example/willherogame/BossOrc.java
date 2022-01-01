@@ -12,7 +12,7 @@ public class BossOrc extends Orc implements Serializable
         this.path = "/Assets/Images/OrcBoss.png";
         this.width = 200;
         this.height = 175;
-        MAX_Y = 20;
+        MAX_Y = 15;
         this.setToMove(-10);
     }
     

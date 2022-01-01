@@ -7,19 +7,19 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" maxHeight="630.0" maxWidth="1020.0" minHeight="630.0" minWidth="1020.0" prefHeight="630.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.willherogame.GamePlayController">
+<AnchorPane fx:id="gameplayRoot" maxHeight="630.0" maxWidth="1020.0" minHeight="630.0" minWidth="1020.0" prefHeight="630.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.willherogame.GamePlayController">
    <children>
       <ImageView fitHeight="650.0" fitWidth="1030.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../Assets/Images/login_Background.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="91.0" fitWidth="106.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#showInGameSettings" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="91.0" fitWidth="106.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#showPauseMenu" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../Assets/Images/settings_icon1.png" />
          </image>
       </ImageView>
-      <Label layoutX="475.0" layoutY="18.0" text="70" textFill="WHITE">
+      <Label fx:id="positionDisplay" layoutX="475.0" layoutY="18.0" text="70" textFill="WHITE">
          <font>
             <Font name="Silom" size="48.0" />
          </font>

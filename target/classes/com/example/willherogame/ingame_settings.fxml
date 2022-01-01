@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="scenePane" prefHeight="630.0" prefWidth="1020.0" style="-fx-background-color: #83c4fc#83c4fc #83c4fc#83c4fc;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.willherogame.AppController">
+<AnchorPane prefHeight="630.0" prefWidth="1020.0" style="-fx-background-color: #83c4fc#83c4fc #83c4fc#83c4fc;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.willherogame.GamePlayController">
     <children>
         <ImageView fitHeight="67.0" fitWidth="148.0" layoutX="329.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true">
             <image>
@@ -19,12 +19,12 @@
                 <Image url="@../../../Assets/Images/privacy_icon.png" />
             </image>
         </ImageView>
-        <ImageView fx:id="musicIcon" fitHeight="67.0" fitWidth="63.0" layoutX="376.0" layoutY="239.0" onMouseClicked="#no_music" pickOnBounds="true" preserveRatio="true">
+        <ImageView fx:id="musicIcon" fitHeight="67.0" fitWidth="63.0" layoutX="376.0" layoutY="239.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../../../Assets/Images/music_icon.png" />
             </image>
         </ImageView>
-        <ImageView fx:id="soundIcon" fitHeight="60.0" fitWidth="63.0" layoutX="376.0" layoutY="327.0" onMouseClicked="#no_sound" pickOnBounds="true" preserveRatio="true">
+        <ImageView fx:id="soundIcon" fitHeight="60.0" fitWidth="63.0" layoutX="376.0" layoutY="327.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../../../Assets/Images/sound_icon.png" />
             </image>
@@ -49,17 +49,12 @@
                 <Image url="@../../../Assets/Images/sound.png" />
             </image>
         </ImageView>
-        <ImageView fitHeight="75.0" fitWidth="76.0" layoutX="24.0" layoutY="22.0" onMouseClicked="#showMainPage" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="75.0" fitWidth="76.0" layoutX="24.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../../../Assets/Images/close_icom.png" />
             </image>
         </ImageView>
-        <ImageView fitHeight="84.0" fitWidth="89.0" layoutX="26.0" layoutY="479.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../../../Assets/Images/edit_icon.png" />
-            </image>
-        </ImageView>
-        <Button fx:id="logoutButton" layoutX="32.0" layoutY="564.0" mnemonicParsing="false" onAction="#logout" prefHeight="34.0" prefWidth="67.0" text="exit" textFill="#0fa4da">
+        <Button fx:id="logoutButton" layoutX="25.0" layoutY="562.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="67.0" text="exit" textFill="#0fa4da">
             <font>
                 <Font size="11.0" />
             </font></Button>
@@ -83,7 +78,7 @@
                 <Image url="@../../../Assets/Images/Tree3.png" />
             </image>
         </ImageView>
-        <ImageView fitHeight="105.0" fitWidth="120.0" layoutX="801.0" layoutY="198.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="105.0" fitWidth="120.0" layoutX="813.0" layoutY="182.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../../../Assets/Images/GameIsland2.png" />
             </image>

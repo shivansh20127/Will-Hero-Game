@@ -1,9 +1,11 @@
 package com.example.willherogame;
 
-public class BossOrc extends Orc
+import java.io.Serializable;
+
+public class BossOrc extends Orc implements Serializable
 {
-    public BossOrc(double x, double y) {
-        super(x, y);
+    public BossOrc(double x, double y, Game game) {
+        super(x, y, game);
     }
     
     @Override

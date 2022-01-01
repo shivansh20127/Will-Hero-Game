@@ -4,21 +4,23 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.Objects;
+import java.util.ResourceBundle;
 
-public class AppController
+public class AppController implements Initializable
 {
     @FXML
     private ImageView soundIcon;
@@ -27,18 +29,25 @@ public class AppController
     
     private boolean sound;
     private boolean music;
+    private static Game currentGame;
     
-    private GamePlayController gamePlayController;
-    
-    public AppController() {
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
         sound = true;
         music = true;
     }
     
     @FXML
-    public void initialize() {
-    
+    public void startNewGame(Event event) throws IOException {
+        currentGame = new Game(20);
+        currentGame.initialiseData();
+        Application.getDatabase().addGame(currentGame);
+        showGameplay(event);
     }
+    
+    
+    public static Game getCurrentGame() { return currentGame; }
+    public static void setCurrentGame(Game game) { currentGame = game; }
     
     @FXML
     public void showCreateAccountPage(ActionEvent event) throws IOException {
@@ -70,9 +79,9 @@ public class AppController
     @FXML
     public void showSavedGames(Event event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("show-saved-games.fxml"));
-        ScrollPane scrollPane = fxmlLoader.load();
+        AnchorPane anchorPane = fxmlLoader.load();
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(scrollPane);
+        Scene scene = new Scene(anchorPane);
         stage.setScene(scene);
     }
     
@@ -85,31 +94,28 @@ public class AppController
         stage.setScene(scene);
     }
     
-    @FXML
-    public void showGameplay(Event event) throws IOException {
+    public static void showGameplay(Event event) throws IOException {
 //        System.out.println("HERE SHOWING");
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("gameplay.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("gameplay.fxml"));
         AnchorPane anchorPane = fxmlLoader.load();
         Scene scene = new Scene(anchorPane);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
-//        gamePlayController = new GamePlayController(anchorPane);
-//        System.out.println("SHOW ENDEDDDDDDDDDDDDDD");
     }
     
     
     @FXML
     public void no_music(MouseEvent event) throws IOException {
-        Image newimage;
+        Image newImage;
         if (music) {
-            newimage = new Image(getClass().getResourceAsStream("src/main/resources/Assets/Images/no_music_icon.png"));
+            newImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("src/main/resources/Assets/Images/no_music_icon.png")));
             music = false;
         }
         else {
-            newimage = new Image(getClass().getResourceAsStream("src/main/resources/Assets/Images/music_icon.png"));
+            newImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("src/main/resources/Assets/Images/music_icon.png")));
             music = true;
         }
-        musicIcon.setImage(newimage);
+        musicIcon.setImage(newImage);
     }
     
     
@@ -117,32 +123,33 @@ public class AppController
     public void no_sound(MouseEvent event) throws IOException {
         Image newimage;
         if (sound) {
-            newimage = new Image(getClass().getResourceAsStream("src/main/resources/Assets/Images/no_sound_icon.png"));
+            newimage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("src/main/resources/Assets/Images/no_sound_icon.png")));
             sound = false;
         }
         else {
-            newimage = new Image(getClass().getResourceAsStream("src/main/resources/Assets/Images/sound_icon.png"));
+            newimage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("src/main/resources/Assets/Images/sound_icon.png")));
             sound = true;
         }
         soundIcon.setImage(newimage);
     }
     
-    @FXML
-    private Button logoutbutton;
-    @FXML
-    private AnchorPane scenePane;
-    Stage stage;
+
+//    @FXML
+//    private Button logoutbutton;
+//    @FXML
+//    private AnchorPane scenePane;
+//    Stage stage;
     
-    public void logout(ActionEvent event) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Logout");
-        alert.setHeaderText("You're about to logout!");
-        alert.setContentText("Do you want to save before exiting?:");
-        
-        if (alert.showAndWait().get() == ButtonType.OK) {
-            stage = (Stage) scenePane.getScene().getWindow();
-            System.out.println("You successfully logged out!");
-            stage.close();
-        }
-    }
+//    public void logout(ActionEvent event) {
+//        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+//        alert.setTitle("Logout");
+//        alert.setHeaderText("You're about to logout!");
+//        alert.setContentText("Do you want to save before exiting?:");
+//
+//        if (alert.showAndWait().get() == ButtonType.OK) {
+//            stage = (Stage) scenePane.getScene().getWindow();
+//            System.out.println("You successfully logged out!");
+//            stage.close();
+//        }
+//    }
 }

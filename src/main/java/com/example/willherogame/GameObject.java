@@ -16,12 +16,19 @@ public abstract class GameObject implements Serializable
 {
     private Coordinates coordinates;
     protected String path;
-    protected ImageView img;
+    protected transient ImageView img;
     protected double width, height;
-    protected Timeline objTimeline;
+    protected transient Timeline objTimeline;
     protected double v_x = 10;
     protected double toMove = -100;
+    protected Game game;
     
+    
+    public GameObject(Game game) {
+        objTimeline = null;
+        this.coordinates = new Coordinates(0, 0);
+        this.game = game;
+    }
     public double getToMove() {
         return toMove;
     }
@@ -36,11 +43,6 @@ public abstract class GameObject implements Serializable
     
     public double getV_x() {
         return v_x;
-    }
-    
-    public GameObject() {
-        objTimeline = null;
-        this.coordinates = new Coordinates(0, 0);
     }
     
     public void renderImage(AnchorPane pane) {

@@ -1,9 +1,11 @@
 package com.example.willherogame;
 
-public class Coin extends GameObject
+import java.io.Serializable;
+
+public class Coin extends GameObject implements Serializable
 {
-    public Coin(double x, double y) {
-        super();
+    public Coin(double x, double y, Game game) {
+        super(game);
         this.path = "/Assets/Images/coins.png";
         this.setCoordinates(x, y);
         this.width = 12;

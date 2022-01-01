@@ -6,9 +6,10 @@ import javafx.animation.TranslateTransition;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Hero extends GameObject
+public class Hero extends GameObject implements Serializable
 {
     private static final double heroScale = 0.6;
     private static final double widthScale = 0.7;
@@ -16,13 +17,11 @@ public class Hero extends GameObject
     private double v_y;
     private static final double GRAVITY = 1.0;
     private static final double MAX_Y = 14;
-    private Timeline jumpTimeline;
+    private transient Timeline jumpTimeline;
     private int collectedCoins;
-    private Game game;
     
-    
-    public Hero() {
-        super();
+    public Hero(Game game) {
+        super(game);
         this.path = "/Assets/Images/hero1.png";
         this.width = 84 * heroScale;
         this.height = 65 * heroScale;
@@ -35,6 +34,7 @@ public class Hero extends GameObject
     public void setGame(Game game) {
         this.game = game;
     }
+    public Game getGame() { return this.game; }
     
     public void startJumping() {
         // movement in y direction starts / resumes
@@ -63,7 +63,7 @@ public class Hero extends GameObject
     }
     
     private void checkCoinCollision() {
-        for (Coin coin : GamePlayController.getCoins()) {
+        for (Coin coin : game.getCoins()) {
             if (coin.getImg().getBoundsInParent().intersects(getImg().getBoundsInParent())) {
                 coin.getImg().setX(-100);
                 collectedCoins++;
@@ -72,7 +72,7 @@ public class Hero extends GameObject
     }
     
     private void checkOrcCollision() {
-        for (Orc orc : GamePlayController.getOrcs()) {
+        for (Orc orc : game.getOrcs()) {
             if (isColliding(orc)) {
                 int col = collisionType(orc);
                 if (col == 0) {
@@ -86,6 +86,7 @@ public class Hero extends GameObject
                     System.out.println("BOTTOM COLLISION");
 //                    // resurrect
 //                    // game over
+                    orc.getJumpTimeline().stop();
                     jumpTimeline.stop();
                 }
                 else {
@@ -135,7 +136,7 @@ public class Hero extends GameObject
     }
     
     private boolean isSurfaceCollidingWithIsland() {
-        for (Island island : GamePlayController.getIslands()) {
+        for (Island island : game.getIslands()) {
             if (island.getImg().getBoundsInParent().intersects(getImg().getBoundsInParent())) return true;
         }
         return false;

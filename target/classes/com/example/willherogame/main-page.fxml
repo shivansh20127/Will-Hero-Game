@@ -32,7 +32,7 @@
             <Image url="@../../../Assets/Images/island4.png" />
          </image>
       </ImageView>
-      <Button layoutX="392.0" layoutY="178.0" mnemonicParsing="false" onAction="#showGameplay" prefHeight="50.0" prefWidth="240.0" text="New Game" />
+      <Button layoutX="392.0" layoutY="178.0" mnemonicParsing="false" onAction="#startNewGame" prefHeight="50.0" prefWidth="240.0" text="New Game" />
       <Button layoutX="392.0" layoutY="256.0" mnemonicParsing="false" onAction="#showSavedGames" prefHeight="50.0" prefWidth="240.0" text="Load Game" />
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="75.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -44,7 +44,7 @@
             <Image url="@../../../Assets/Images/island3.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="58.0" fitWidth="77.0" layoutX="474.0" layoutY="328.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="58.0" fitWidth="77.0" layoutX="729.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../Assets/Images/hero1.png" />
          </image>

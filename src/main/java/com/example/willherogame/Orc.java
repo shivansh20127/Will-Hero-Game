@@ -6,21 +6,21 @@ import javafx.animation.TranslateTransition;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public abstract class Orc extends GameObject
+public abstract class Orc extends GameObject implements Serializable
 {
     private static final double widthScale = 0.7;
     private static final double heightScale = 1;
     private double v_y;
     private static final double GRAVITY = 1.0;
     protected double MAX_Y;
-    private Timeline jumpTimeline;
+    private transient Timeline jumpTimeline;
     protected static double orcScale;
     
-    
-    public Orc(double x, double y) {
-        super();
+    public Orc(double x, double y, Game game) {
+        super(game);
         this.setCoordinates(x, y);
         orcScale = 0.6;
     }
@@ -65,11 +65,13 @@ public abstract class Orc extends GameObject
     }
     
     private boolean isSurfaceCollidingWithIsland() {
-        for (Island island : GamePlayController.getIslands()) {
+        for (Island island : game.getIslands()) {
             if (island.getImg().getBoundsInParent().intersects(getImg().getBoundsInParent())) return true;
         }
         return false;
     }
+    
+    public Timeline getJumpTimeline() { return jumpTimeline; }
     
 //    public Timeline getJumpTimeline() {return jumpTimeline;}
 

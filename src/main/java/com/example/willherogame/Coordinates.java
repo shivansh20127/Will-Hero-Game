@@ -1,6 +1,8 @@
 package com.example.willherogame;
 
-public class Coordinates
+import java.io.Serializable;
+
+public class Coordinates implements Serializable
 {
     private double x, y;
     

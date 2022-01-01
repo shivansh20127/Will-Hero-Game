@@ -1,17 +1,18 @@
 package com.example.willherogame;
 
+import java.io.Serializable;
 import java.util.Random;
 
-public class Island extends GameObject
+public class Island extends GameObject implements Serializable
 {
     private final int islandID;
     private final static double islandScale = 0.58;
     private final static double offsetY = 100;
-    private final static Random random = new Random();
+    private transient final static Random random = new Random();
     private static int islandCount = 0;
     
-    public Island(double x, double y) {
-        super();
+    public Island(double x, double y, Game game) {
+        super(game);
         islandCount++;
         this.islandID = (islandCount % 3) + 1;
         this.path = "/Assets/Images/GameIsland" + islandID + ".png";

@@ -6,12 +6,15 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 
-import java.io.IOException;
+import java.io.*;
 
 public class Application extends javafx.application.Application
 {
+    private static Database database;
+    
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) throws IOException, ClassNotFoundException {
+        deserialize();
         FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("login-page.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Will Hero");
@@ -21,23 +24,47 @@ public class Application extends javafx.application.Application
         
         stage.setOnCloseRequest(event -> {
             event.consume();
-            logout(stage);
+            try {
+                logout(stage);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
     }
     
+    private static void deserialize() throws ClassNotFoundException {
+        ObjectInputStream in = null;
+        try {
+            in = new ObjectInputStream(new FileInputStream("database.txt"));
+            database = (Database) in.readObject();
+            in.close();
+        }
+        catch (NullPointerException | IOException e) {
+            database = new Database();
+        }
+    }
+    
+    private static void serialize() throws IOException {
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("database.txt"))) {
+            out.writeObject(database);
+        }
+    }
+    
+    public static Database getDatabase() { return database; }
+    
     // to be preferably put in AppController
-    public void logout(Stage stage) {
+    public void logout(Stage stage) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Logout");
         alert.setHeaderText("You're about to logout!");
         alert.setContentText("Do you want to save before exiting?:");
         
         if (alert.showAndWait().get() == ButtonType.OK) {
+            if (database != null) serialize();
             System.out.println("You successfully logged out!");
             stage.close();
         }
     }
-    
     
     public static void main(String[] args) {
         launch();
